@@ -6,14 +6,14 @@ import {
     updateTask,
     deleteTask
 } from '#controllers/tasks.controllers';
+import validateTask from '#middlewares/taskValidator.middlewares';
 
 const router = express.Router();
 
-router.post('/',  createTask);
+router.post('/', validateTask, createTask);
 router.get('/', getTasks);
 router.get('/:id', getTaskById);
-router.put('/:id', updateTask);
+router.put('/:id', validateTask, updateTask);
 router.delete('/:id', deleteTask);
 
-export { router as taskRouter };
-
+export { router as taskRouter};
